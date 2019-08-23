@@ -4,10 +4,19 @@ Crafty.c("SquadMate", {
     },
 
     initialize: function(team, grid, tileX, tileY) {
+        var self = this;
         this.team = team;
         this.grid = grid;
         this.moveOnGrid(tileX, tileY)
         this.color(team);
+
+        this.click(() => { 
+            if (Game.selected != self) {
+                Game.selected = self;
+            } else {
+                Game.selected = null;
+            }
+        });
         return this;
     },
 

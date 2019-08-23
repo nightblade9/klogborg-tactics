@@ -20,15 +20,7 @@ Game = {
       }
 
       var red = Crafty.e("SquadMate");
-      red.initialize("red", grid, 2, 4).click(() => { 
-        if (Game.selected != red) {
-          Game.selected = red;
-          console.log("selected");
-        } else {
-          Game.selected = null;
-          console.log("unselected");
-        }
-      });
+      red.initialize("red", grid, 2, 4);
     }
   }
 
