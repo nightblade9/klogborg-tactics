@@ -16,14 +16,16 @@ Crafty.c("SquadMate", {
         this.hp = 12;
 
         this.click(() => { 
-            if (Game.selected != self) {
-                Game.selected = self;
-                Game.onSelected(self.tileX, self.tileY);
-                self.css({"border": "3px solid black"})
-            } else {
-                Game.selected = null;
-                self.css({"border": "none"})
-                Game.onUnselected();
+            if (Game.currentTurn === this.team) {
+                if (Game.selected != self) {
+                    Game.selected = self;
+                    Game.onSelected(self.tileX, self.tileY);
+                    self.css({"border": "3px solid black"})
+                } else {
+                    Game.selected = null;
+                    self.css({"border": "none"})
+                    Game.onUnselected();
+                }
             }
         });
 

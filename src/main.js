@@ -8,6 +8,8 @@ Game = {
     reds: [],
     blues: [],
 
+    currentTurn: "red",
+
     start: function() {
       Game.view.width = config("mapWidth") * config("tileSize");
       Game.view.height = config("mapHeight") * config("tileSize") + config("footerHeight");
