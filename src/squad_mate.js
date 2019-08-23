@@ -1,7 +1,7 @@
 Crafty.c("SquadMate", {
     init: function() {
         var tileSize = config("tileSize");
-        this.requires("Actor, Text2").fontSize(14).size(tileSize, tileSize).color("black");
+        this.requires("Actor, Text2").fontSize(14).textColor("white").size(tileSize, tileSize).color("black");
     },
 
     initialize: function(team, grid, tileX, tileY) {
