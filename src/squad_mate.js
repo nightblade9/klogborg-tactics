@@ -8,6 +8,7 @@ Crafty.c("SquadMate", {
         this.grid = grid;
         this.moveOnGrid(tileX, tileY)
         this.color(team);
+        return this;
     },
 
     moveOnGrid: function(x, y) {
@@ -16,5 +17,6 @@ Crafty.c("SquadMate", {
         this.grid.set(x, y, self);
         this.tileX = x;
         this.tileY = y;
+        return this;
     }
 })

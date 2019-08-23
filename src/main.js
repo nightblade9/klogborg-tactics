@@ -11,12 +11,24 @@ Game = {
 
       for (const y of Array(grid.height).keys()) {
         for (const x of Array(grid.width).keys()) {
-          Crafty.e("GridTile").move(x * 64, y * 64);
+          Crafty.e("GridTile").move(x * 64, y * 64).click(() => {
+            if (Game.selected != null) {
+              Game.selected.moveOnGrid(x, y); // from loop
+            }
+          });
         }
       }
 
       var red = Crafty.e("SquadMate");
-      red.initialize("red", grid, 2, 4);
+      red.initialize("red", grid, 2, 4).click(() => { 
+        if (Game.selected != red) {
+          Game.selected = red;
+          console.log("selected");
+        } else {
+          Game.selected = null;
+          console.log("unselected");
+        }
+      });
     }
   }
 
