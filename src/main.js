@@ -25,14 +25,10 @@ Game = {
       }
 
       var reds = Game.randomlyCreateSquad(config("squadSize"), "red", 0, parseInt(config("mapWidth") / 3));
-      for (var red in reds) {
-        Game.reds.push(red);
-      }
+      reds.forEach(red => Game.reds.push(red));
 
       var blues = Game.randomlyCreateSquad(config("squadSize"), "blue", parseInt(config("mapWidth") * 2 / 3), config("mapWidth"));
-      for (var blues in blues) {
-        Game.blues.push(blues);
-      }
+      blues.forEach(blue => Game.blues.push(blue));
     },
 
 
@@ -59,13 +55,8 @@ Game = {
         }
       }
 
-      for (var red in Game.reds) {
-        red.css({ "border": "none"})
-      };
-
-      for (var blue in Game.blues) {
-        blue.css({ "border": "none"})
-      };
+      Game.reds.forEach(red => red.css({ "border": "none"}));
+      Game.blues.forEach(blue => blue.css({ "border": "none"}));
     },
 
     randomlyCreateSquad: function(size, team, minX, maxX) {
