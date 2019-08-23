@@ -35,13 +35,19 @@ Crafty.c("SquadMate", {
         this.text("HP: " +this.hp + "/" + this.maxHp + "\nAP: " + this.ap);
     },
 
-    moveOnGrid: function(x, y) {
+    moveOnGrid: function(x, y, deductAp = false) {
         var tileSize = config("tileSize");
         this.move(x * tileSize, y * tileSize);
         this.grid.unset(this.tileX, this.tileY);
         this.grid.set(x, y, self);
         this.tileX = x;
         this.tileY = y;
+
+        if (deductAp) {
+            this.ap -= 1;
+            this.updateDisplay();
+        }
+
         return this;
     }
 })
