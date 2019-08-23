@@ -11,11 +11,7 @@ Game = {
 
       for (const y of Array(grid.height).keys()) {
         for (const x of Array(grid.width).keys()) {
-          Crafty.e("GridTile").move(x * 64, y * 64).click(() => {
-            if (Game.selected != null) {
-              Game.selected.moveOnGrid(x, y); // from loop
-            }
-          });
+          Crafty.e("GridTile").initialize(x, y).move(x * 64, y * 64);
         }
       }
 
