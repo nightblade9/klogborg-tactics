@@ -1,3 +1,6 @@
 externs = {
+    "tileSize": 64,
+    "mapWidth": 15,
+    "mapHeight": 8,
     "movePerTurn": 3
 }

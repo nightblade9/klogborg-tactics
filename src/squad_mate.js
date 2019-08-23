@@ -1,6 +1,7 @@
 Crafty.c("SquadMate", {
     init: function() {
-        this.requires("Actor").size(64, 64).color("black");
+        var tileSize = config("tileSize");
+        this.requires("Actor").size(tileSize, tileSize).color("black");
     },
 
     initialize: function(team, grid, tileX, tileY) {
@@ -25,7 +26,8 @@ Crafty.c("SquadMate", {
     },
 
     moveOnGrid: function(x, y) {
-        this.move(x * 64, y * 64);
+        var tileSize = config("tileSize");
+        this.move(x * tileSize, y * tileSize);
         this.grid.unset(this.tileX, this.tileY);
         this.grid.set(x, y, self);
         this.tileX = x;

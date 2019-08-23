@@ -1,7 +1,7 @@
 Game = {
     view: {
-      width: 960,
-      height: 512,
+      width: 0,
+      height: 0
     },
 
     gridTiles: {},
@@ -31,13 +31,17 @@ Game = {
     },
 
     start: function() {
+      Game.view.width = config("mapWidth") * config("tileSize");
+      Game.view.height = config("mapHeight") * config("tileSize");
+
       Crafty.init(Game.view.width, Game.view.height);
       this.grid = Crafty.e("Map")
-      grid.initialize(15, 8);
+      grid.initialize(config("mapWidth"), config("mapHeight"));
+      var tileSize = config("tileSize");
 
       for (const y of Array(grid.height).keys()) {
         for (const x of Array(grid.width).keys()) {
-          var gridTile = Crafty.e("GridTile").initialize(x, y).move(x * 64, y * 64);
+          var gridTile = Crafty.e("GridTile").initialize(x, y).move(x * tileSize, y * tileSize);
           Game.gridTiles[x + ", " + y] = gridTile;
         }
       }
