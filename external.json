@@ -2,5 +2,6 @@ externs = {
     "tileSize": 48,
     "mapWidth": 15,
     "mapHeight": 8,
-    "movePerTurn": 3
+    "movePerTurn": 3,
+    "squadSize": 4
 }
