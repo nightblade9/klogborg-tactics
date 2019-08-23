@@ -30,7 +30,7 @@ Game = {
       var blues = Game.randomlyCreateSquad(config("squadSize"), "blue", parseInt(config("mapWidth") * 2 / 3), config("mapWidth"));
       blues.forEach(blue => Game.blues.push(blue));
 
-      Crafty.e("ControlPanel").move(0, Game.view.height - config("footerHeight"));
+      Crafty.e("ControlPanel").move2(0, Game.view.height - config("footerHeight"));
     },
 
 
