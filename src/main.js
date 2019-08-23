@@ -10,7 +10,7 @@ Game = {
 
     start: function() {
       Game.view.width = config("mapWidth") * config("tileSize");
-      Game.view.height = config("mapHeight") * config("tileSize");
+      Game.view.height = config("mapHeight") * config("tileSize") + config("footerHeight");
 
       Crafty.init(Game.view.width, Game.view.height);
       this.grid = Crafty.e("Map")
@@ -29,6 +29,8 @@ Game = {
 
       var blues = Game.randomlyCreateSquad(config("squadSize"), "blue", parseInt(config("mapWidth") * 2 / 3), config("mapWidth"));
       blues.forEach(blue => Game.blues.push(blue));
+
+      Crafty.e("ControlPanel").move(0, Game.view.height - config("footerHeight"));
     },
 
 
