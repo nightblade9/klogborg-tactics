@@ -9,6 +9,10 @@ Crafty.c("Map", {
         this.data[this._index(x, y)] = contents;
     },
 
+    unset(x, y) {
+        this.set(x, y, null);
+    },
+
     get(x, y) {
         return this.data[this._index(x, y)];
     },

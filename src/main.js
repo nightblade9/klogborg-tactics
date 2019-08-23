@@ -6,16 +6,17 @@ Game = {
 
     start: function() {
       Crafty.init(Game.view.width, Game.view.height);
-      this.grid = Crafty.e("Map");
+      this.grid = Crafty.e("Map")
       grid.initialize(15, 8);
-      grid.set(3, 7, "hi");
-      console.log(grid.get(3, 7));
 
       for (const y of Array(grid.height).keys()) {
         for (const x of Array(grid.width).keys()) {
           Crafty.e("GridTile").move(x * 64, y * 64);
         }
       }
+
+      var red = Crafty.e("SquadMate");
+      red.initialize("red", grid, 2, 4);
     }
   }
 
