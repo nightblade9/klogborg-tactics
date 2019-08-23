@@ -13,6 +13,7 @@ Crafty.c("GridTile", {
               if (distance > 0 && distance <= config("movePerTurn"))
               {
                 Game.selected.moveOnGrid(x, y); // from loop
+                Game.onSelected(x, y);
               }
             }
           });

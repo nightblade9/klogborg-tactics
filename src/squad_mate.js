@@ -13,10 +13,12 @@ Crafty.c("SquadMate", {
         this.click(() => { 
             if (Game.selected != self) {
                 Game.selected = self;
+                Game.onSelected(self.tileX, self.tileY);
                 self.css({"border": "3px solid black"})
             } else {
                 Game.selected = null;
                 self.css({"border": "none"})
+                Game.onUnselected();
             }
         });
         return this;
