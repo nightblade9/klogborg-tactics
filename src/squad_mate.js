@@ -1,7 +1,7 @@
 Crafty.c("SquadMate", {
     init: function() {
         var tileSize = config("tileSize");
-        this.requires("Actor").size(tileSize, tileSize).color("black");
+        this.requires("Actor, Text2").fontSize(14).size(tileSize, tileSize).color("black");
     },
 
     initialize: function(team, grid, tileX, tileY) {
@@ -10,6 +10,10 @@ Crafty.c("SquadMate", {
         this.grid = grid;
         this.moveOnGrid(tileX, tileY)
         this.color(team);
+        this.maxAp = 2;
+        this.ap = 2;
+        this.maxHp = 12;
+        this.hp = 12;
 
         this.click(() => { 
             if (Game.selected != self) {
@@ -22,7 +26,13 @@ Crafty.c("SquadMate", {
                 Game.onUnselected();
             }
         });
+
+        this.updateDisplay();
         return this;
+    },
+
+    updateDisplay: function() {
+        this.text("HP: " +this.hp + "/" + this.maxHp + "\nAP: " + this.ap);
     },
 
     moveOnGrid: function(x, y) {
