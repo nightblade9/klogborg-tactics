@@ -1,7 +1,11 @@
 Crafty.c("ControlPanel", {
     init: function() {
       this.requires("Actor").size(Game.view.width, config("footerHeight"));
-      this.fireButton = Crafty.e("Actor, Text2").fontSize(14).size(100, 32).text("Shoot (0 damage)").css({"border": "2px solid black"});
+      this.fireButton = Crafty.e("Actor, Text2")
+        .color("white").fontSize(14).size(100, 32)
+        .text("Shoot (0 damage)").css({"border": "2px solid black"})
+        .click(() => this.fire());
+
       this.fireButton.visible = false;
     },
 
@@ -13,6 +17,26 @@ Crafty.c("ControlPanel", {
     canFire(damage) {
         this.fireButton.visible = true;
         this.fireButton.text("Shoot (" + damage + " damage)");
+        this.fireButton.damage = damage;
+    },
+
+    fire() {
+        if (Game.selected != null && Game.target != null && this.fireButton.damage >= 0)
+        {
+            Game.target.hp -= this.fireButton.damage;
+            Game.target.updateDisplay();
+            if (Game.target.hp <= 0) {
+                Game.target.visible = false;
+            }
+            
+            Game.selected.ap -= 1;
+            Game.selected.updateDisplay();
+
+            if (Game.selected.ap === 0) {
+                this.cannotFire();
+                this.damage = -1;
+            }
+        }
     },
 
     cannotFire() {

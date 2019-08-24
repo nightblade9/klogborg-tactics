@@ -4,5 +4,6 @@ externs = {
     "mapHeight": 8,
     "movePerTurn": 3,
     "squadSize": 4,
-    "footerHeight": 96
+    "footerHeight": 96,
+    "baseDamage": 4
 }

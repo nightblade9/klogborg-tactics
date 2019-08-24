@@ -89,6 +89,21 @@ Game = {
       var collection = Game.currentTurn === "red" ? Game.blues : Game.reds;
       collection.forEach(i => i.css({ "border": "none" }));
       target.css({ "border": "4px solid black" });
+      Game.showFireButtonIfApplicable();
+    },
+
+    showFireButtonIfApplicable: function() {
+      if (Game.selected !== null && Game.target !== null) {
+        var damage = Game.calculateDamage(Game.selected, Game.target);
+        Crafty.single("ControlPanel").canFire(damage);
+      }
+    },
+
+    calculateDamage: function(attacker, defender) {
+      const BASE_DAMAGE = config("baseDamage");
+      // TODO: subtract damage based on cover between attacker and defender
+      // TODO: if range > 4, subtract (range - 4) damage. eg. 5 => -1, 6 => -2, etc.
+      return BASE_DAMAGE;
     }
   }
 
