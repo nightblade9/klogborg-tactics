@@ -27,6 +27,8 @@ Crafty.c("ControlPanel", {
             Game.target.updateDisplay();
             if (Game.target.hp <= 0) {
                 Game.target.visible = false;
+                Game.target = null;
+                Crafty.single("ControlPanel").cannotFire();
             }
             
             Game.selected.ap -= 1;
