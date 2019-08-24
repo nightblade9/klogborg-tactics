@@ -9,6 +9,9 @@ Game = {
     blues: [],
 
     currentTurn: "red",
+    
+    selected: null,
+    target: null,
 
     start: function() {
       Game.view.width = config("mapWidth") * config("tileSize");
@@ -59,8 +62,8 @@ Game = {
         }
       }
 
-      Game.reds.forEach(red => red.css({ "border": "none"}));
-      Game.blues.forEach(blue => blue.css({ "border": "none"}));
+      var collection = Game.currentTurn === "red" ? Game.reds : Game.blues;
+      collection.forEach(blue => blue.css({ "border": "none"}));
     },
 
     randomlyCreateSquad: function(size, team, minX, maxX) {
@@ -80,6 +83,12 @@ Game = {
       }
 
       return toReturn;
+    },
+
+    selectedTarget: function(target) {
+      var collection = Game.currentTurn === "red" ? Game.blues : Game.reds;
+      collection.forEach(i => i.css({ "border": "none" }));
+      target.css({ "border": "4px solid black" });
     }
   }
 

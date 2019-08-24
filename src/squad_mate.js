@@ -16,7 +16,7 @@ Crafty.c("SquadMate", {
         this.hp = 12;
 
         this.click(() => { 
-            if (Game.currentTurn === this.team) {
+            if (Game.currentTurn === self.team) {
                 if (Game.selected != self) {
                     Game.selected = self;
                     Game.onSelected(self.tileX, self.tileY);
@@ -26,6 +26,9 @@ Crafty.c("SquadMate", {
                     self.css({"border": "none"})
                     Game.onUnselected();
                 }
+            } else {
+                Game.target = self;
+                Game.selectedTarget(self);
             }
         });
 
