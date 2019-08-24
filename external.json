@@ -5,5 +5,7 @@ externs = {
     "movePerTurn": 3,
     "squadSize": 4,
     "footerHeight": 96,
-    "baseDamage": 4
+
+    "baseDamage": 4,
+    "fullDamageTileRange": 4
 }

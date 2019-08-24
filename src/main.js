@@ -103,9 +103,18 @@ Game = {
       const BASE_DAMAGE = config("baseDamage");
       var damage = BASE_DAMAGE;
       var explanation = "base damage";
-      // TODO: subtract damage based on cover between attacker and defender
-      // TODO: if range > 4, subtract (range - 4) damage. eg. 5 => -1, 6 => -2, etc.
 
+      // TODO: subtract damage based on cover between attacker and defender
+      
+      // if range > 4, subtract (range - 4) damage. eg. 5 => -1, 6 => -2, etc.
+      var range = Math.sqrt(Math.pow(attacker.tileX - defender.tileX, 2) + Math.pow(attacker.tileY - defender.tileY, 2));
+      if (range > config("fullDamageTileRange")) {
+        var rangePenalty = parseInt(range - config("fullDamageTileRange"));
+        damage -= rangePenalty;
+        explanation += ", -" + rangePenalty + " range penalty";
+      }
+
+      damage = Math.max(damage, 0);
       Crafty.single("ControlPanel").text(damage + " damage (" + explanation + ")");
       return BASE_DAMAGE;
     }
