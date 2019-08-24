@@ -2,9 +2,12 @@ externs = {
     "tileSize": 48,
     "mapWidth": 15,
     "mapHeight": 8,
+    "footerHeight": 96,
+
     "movePerTurn": 3,
     "squadSize": 4,
-    "footerHeight": 96,
+    "numLowCover": 5,
+    "numHighCover": 3,
 
     "baseDamage": 4,
     "fullDamageTileRange": 4
