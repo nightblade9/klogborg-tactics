@@ -67,6 +67,10 @@ Game = {
       collection.forEach(blue => blue.css({ "border": "none"}));
     },
 
+    isWalkable(x, y) {
+      return grid.isEmpty(x, y);
+    },
+
     applyColor(gridTile, x, y) {
       if (grid.get(x, y) === "lowCover") {
         gridTile.color("#440088");
