@@ -45,7 +45,7 @@ Game = {
       for (const y of Array(grid.height).keys()) {
         for (const x of Array(grid.width).keys()) {
           var gridTile = Game.gridTiles[x + ", " + y];
-          if (Math.sqrt(Math.pow(x - tileX, 2) + Math.pow(y - tileY, 2)) <= config("movePerTurn"))
+          if (Math.sqrt(Math.pow(x - tileX, 2) + Math.pow(y - tileY, 2)) <= Game.selected.moveDistance())
           {
             gridTile.color("#00aa00");
           }

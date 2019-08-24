@@ -13,7 +13,7 @@ Crafty.c("SquadMate", {
         this.maxAp = 2;
         this.ap = 2;
         this.maxHp = 12;
-        this.hp = 12;
+        this.hp = randomBetween(0, 100) >= 50 ? 1 : 11;
 
         this.click(() => { 
             if (Game.currentTurn === self.team) {
@@ -39,6 +39,14 @@ Crafty.c("SquadMate", {
 
         this.updateDisplay();
         return this;
+    },
+
+    moveDistance: function() {
+        var toReturn = config("movePerTurn");
+        if (this.hp <= this.maxHp / 2) {
+          toReturn *= 2;
+        }
+        return toReturn;
     },
 
     updateDisplay: function() {

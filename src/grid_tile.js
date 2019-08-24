@@ -11,7 +11,7 @@ Crafty.c("GridTile", {
         this.click(() => {
             if (Game.selected != null && Game.selected.ap > 0) {
               var distance = Math.sqrt(Math.pow(this.tileX - Game.selected.tileX, 2) + Math.pow(this.tileY - Game.selected.tileY, 2));
-              if (distance > 0 && distance <= config("movePerTurn"))
+              if (distance > 0 && distance <= Game.selected.moveDistance())
               {
                 Game.selected.moveOnGrid(x, y, true); // from loop
                 Game.onSelected(x, y);
