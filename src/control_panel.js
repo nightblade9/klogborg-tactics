@@ -24,11 +24,15 @@ Crafty.c("ControlPanel", {
         if (Game.selected != null && Game.target != null && this.fireButton.damage >= 0)
         {
             Game.target.hp -= this.fireButton.damage;
+
             Game.target.updateDisplay();
             if (Game.target.hp <= 0) {
                 Game.target.visible = false;
                 Game.target = null;
                 Crafty.single("ControlPanel").cannotFire();
+            } else {
+                Game.target.color("orange");
+                Game.target.after(0.2, () => Game.target.color(Game.target.team));
             }
             
             Game.selected.ap -= 1;
