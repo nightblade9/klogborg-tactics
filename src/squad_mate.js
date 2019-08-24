@@ -23,7 +23,7 @@ Crafty.c("SquadMate", {
                     self.css({"border": "3px solid black"});
 
                     if (Game.selected !== null && Game.target !== null) {
-                        var damage = Game.calculateDamage(Game.selected, Game.target);
+                        var damage = Game.calculateAndExplainDamage(Game.selected, Game.target);
                         Crafty.single("ControlPanel").canFire(damage);
                     }
                 } else {

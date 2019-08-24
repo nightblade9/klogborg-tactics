@@ -94,15 +94,19 @@ Game = {
 
     showFireButtonIfApplicable: function() {
       if (Game.selected !== null && Game.target !== null) {
-        var damage = Game.calculateDamage(Game.selected, Game.target);
+        var damage = Game.calculateAndExplainDamage(Game.selected, Game.target);
         Crafty.single("ControlPanel").canFire(damage);
       }
     },
 
-    calculateDamage: function(attacker, defender) {
+    calculateAndExplainDamage: function(attacker, defender) {
       const BASE_DAMAGE = config("baseDamage");
+      var damage = BASE_DAMAGE;
+      var explanation = "base damage";
       // TODO: subtract damage based on cover between attacker and defender
       // TODO: if range > 4, subtract (range - 4) damage. eg. 5 => -1, 6 => -2, etc.
+
+      Crafty.single("ControlPanel").text(damage + " damage (" + explanation + ")");
       return BASE_DAMAGE;
     }
   }
