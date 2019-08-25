@@ -1,18 +1,42 @@
+Crafty.c("MyButton", {
+    init: function() {
+        this.requires("Actor, Text2")
+            .color("white").fontSize(14).size(100, 32)
+            .css({"border": "2px solid black"});
+        
+        var self = this;
+        this.click(() => {
+            self.color("#aaaaaa");
+            self.after(0.1, () => self.color("white"));
+        });
+    }
+});
+
 Crafty.c("ControlPanel", {
     init: function() {
-      this.requires("Actor, Text2").size(Game.view.width, config("footerHeight"));
+      this.requires("Actor, Text2").size(Game.view.width, config("footerHeight")).css({ "border": "4px solid grey"});
 
-      this.fireButton = Crafty.e("Actor, Text2")
-        .color("white").fontSize(14).size(100, 32)
-        .text("Shoot (0 damage)").css({"border": "2px solid black"})
-        .click(() => this.fire());
-
+      this.fireButton = Crafty.e("MyButton").text("Shoot (0 damage)").click(() => this.fire());
       this.fireButton.visible = false;
+
+      var self = this;
+      this.endTurnButton = Crafty.e("MyButton").click(() => {
+          Game.switchTurns();
+          self.updateDisplay();
+      });
+      this.updateDisplay();
+    },
+
+    updateDisplay: function() {
+        this.endTurnButton.text("End " + Game.currentTurn + "'s turn");
+        this.color(Game.currentTurn === "red" ? "#ffaaaa" : "#aaaaff");
     },
 
     move2: function(x, y) {
         this.move(x, y);
         this.fireButton.move(x + 256, y + 32)
+
+        this.endTurnButton.move(this.fireButton.x + 128, this.fireButton.y);
     },
 
     canFire(damage) {

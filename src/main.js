@@ -123,6 +123,10 @@ Game = {
       }
     },
 
+    switchTurns: function() {
+      this.currentTurn = this.currentTurn === "red" ? "blue" : "red";
+    },
+
     calculateAndExplainDamage: function(attacker, defender) {
       const BASE_DAMAGE = config("baseDamage");
       var damage = BASE_DAMAGE;
