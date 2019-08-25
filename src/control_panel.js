@@ -19,6 +19,15 @@ Crafty.c("ControlPanel", {
         this.fireButton.visible = true;
         this.fireButton.text("Shoot (" + damage + " damage)");
         this.fireButton.damage = damage;
+
+        this.showFirePath();
+    },
+
+    showFirePath: function() {
+        var from = Game.selected;
+        var to = Game.target;
+        var cells = getCellsBetween(from.tileX, from.tileY, to.tileX, to.tileY);
+        cells.forEach(c => Game.gridTiles[c.x + ", " + c.y].alpha = 0.5);
     },
 
     fire() {
@@ -29,7 +38,7 @@ Crafty.c("ControlPanel", {
 
             Game.target.updateDisplay();
             if (Game.target.hp <= 0) {
-                Game.target.visible = false;
+                Game.target.destroy();
                 Game.target = null;
                 Crafty.single("ControlPanel").cannotFire();
             } else {

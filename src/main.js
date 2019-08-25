@@ -46,6 +46,7 @@ Game = {
       for (const y of Array(grid.height).keys()) {
         for (const x of Array(grid.width).keys()) {
           var gridTile = Game.gridTiles[x + ", " + y];
+          gridTile.alpha = 1;
           if (grid.isEmpty(x, y) && Math.sqrt(Math.pow(x - tileX, 2) + Math.pow(y - tileY, 2)) <= Game.selected.moveDistance())
           {
             gridTile.color("#00aa00");
@@ -59,6 +60,7 @@ Game = {
       for (const y of Array(grid.height).keys()) {
         for (const x of Array(grid.width).keys()) {
           var gridTile = Game.gridTiles[x + ", " + y];
+          gridTile.alpha = 1;
           Game.applyColor(gridTile, x, y);
         }
       }
@@ -100,6 +102,14 @@ Game = {
     },
 
     selectedTarget: function(target) {
+      // Reset shown path between selected and target
+      for (const y of Array(grid.height).keys()) {
+        for (const x of Array(grid.width).keys()) {
+          var gridTile = Game.gridTiles[x + ", " + y];
+          gridTile.alpha = 1;
+        }
+      }
+
       var collection = Game.currentTurn === "red" ? Game.blues : Game.reds;
       collection.forEach(i => i.css({ "border": "none" }));
       target.css({ "border": "4px solid black" });
