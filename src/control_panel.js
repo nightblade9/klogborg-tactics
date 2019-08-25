@@ -12,7 +12,7 @@ Crafty.c("ControlPanel", {
 
     move2: function(x, y) {
         this.move(x, y);
-        this.fireButton.move(x + 32, y + 32)
+        this.fireButton.move(x + 256, y + 32)
     },
 
     canFire(damage) {
@@ -23,7 +23,7 @@ Crafty.c("ControlPanel", {
         this.showFirePath();
     },
 
-    showFirePath: function() {
+    showFirePath: function(cells) {
         var from = Game.selected;
         var to = Game.target;
         var cells = getCellsBetween(from.tileX, from.tileY, to.tileX, to.tileY);

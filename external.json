@@ -10,5 +10,7 @@ externs = {
     "numHighCover": 3,
 
     "baseDamage": 4,
-    "fullDamageTileRange": 4
+    "fullDamageTileRange": 4,
+    "lowCoverDamageMod": 1,
+    "highCoverDamageMod": 3
 }

@@ -126,9 +126,33 @@ Game = {
     calculateAndExplainDamage: function(attacker, defender) {
       const BASE_DAMAGE = config("baseDamage");
       var damage = BASE_DAMAGE;
-      var explanation = "base damage";
+      var explanation = BASE_DAMAGE + " base damage";
 
-      // TODO: subtract damage based on cover between attacker and defender
+      // Subtract damage due to low-cover tiles (eg. -1) and high-cover tiles (eg. -3)
+      var lowCovers = 0;
+      var highCovers = 0;
+
+      var cells = getCellsBetween(attacker.tileX, attacker.tileY, defender.tileX, defender.tileY);
+      cells.forEach(cell => {
+        var contents = grid.get(cell.x, cell.y);
+        if (contents === "lowCover") {
+          lowCovers++;
+        } else if (contents == "highCover") {
+          highCovers++;
+        }
+      });
+
+      if (lowCovers > 0) {
+        var lowCoverTotal = lowCovers * config("lowCoverDamageMod");
+        explanation += ", -" + lowCoverTotal + " (" + lowCovers + "x low cover)";
+        damage -= lowCoverTotal;
+      }
+
+      if (highCovers > 0) {
+        var highCoverTotal = highCovers * config("highCoverDamageMod");
+        explanation += ", -" + highCoverTotal + " (" + highCovers + "x high cover)";
+        damage -= highCoverTotal;
+      }
       
       // if range > 4, subtract (range - 4) damage. eg. 5 => -1, 6 => -2, etc.
       var range = Math.sqrt(Math.pow(attacker.tileX - defender.tileX, 2) + Math.pow(attacker.tileY - defender.tileY, 2));
