@@ -10,9 +10,9 @@ Crafty.c("SquadMate", {
         this.grid = grid;
         this.moveOnGrid(tileX, tileY)
         this.color(team);
-        this.maxAp = 2;
-        this.ap = 2;
-        this.maxHp = 12;
+        this.maxAp = config("ap");
+        this.ap = this.maxAp;
+        this.maxHp = config("hp");
         this.hp = this.maxHp;
 
         this.click(() => { 
