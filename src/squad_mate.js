@@ -22,10 +22,7 @@ Crafty.c("SquadMate", {
                     Game.onSelected(self.tileX, self.tileY);
                     self.css({"border": "3px solid black"});
 
-                    if (Game.selected !== null && Game.target !== null) {
-                        var damage = Game.calculateAndExplainDamage(Game.selected, Game.target);
-                        Crafty.single("ControlPanel").canFire(damage);
-                    }
+                    Game.showFireButtonIfApplicable();
                 } else {
                     Game.selected = null;
                     self.css({"border": "none"})

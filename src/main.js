@@ -117,9 +117,12 @@ Game = {
     },
 
     showFireButtonIfApplicable: function() {
-      if (Game.selected !== null && Game.target !== null) {
+      if (Game.selected !== null && Game.target !== null && Game.selected.ap > 0) {
+        console.log("AP=" + Game.selected.ap);
         var damage = Game.calculateAndExplainDamage(Game.selected, Game.target);
         Crafty.single("ControlPanel").canFire(damage);
+      } else {
+        Crafty.single("ControlPanel").cannotFire();
       }
     },
 
