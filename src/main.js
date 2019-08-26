@@ -168,7 +168,7 @@ Game = {
 
       damage = Math.max(damage, 0);
       Crafty.single("ControlPanel").text(damage + " damage (" + explanation + ")");
-      return BASE_DAMAGE;
+      return damage;
     }
   }
 
