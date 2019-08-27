@@ -128,6 +128,15 @@ Game = {
 
     switchTurns: function() {
       this.currentTurn = this.currentTurn === "red" ? "blue" : "red";
+      Game.reds.forEach(red => {
+        red.ap = red.maxAp;
+        red.updateDisplay();
+      });
+      
+      Game.blues.forEach(blue => {
+        blue.ap = blue.maxAp;
+        blue.updateDisplay()
+      });
     },
 
     calculateAndExplainDamage: function(attacker, defender) {
